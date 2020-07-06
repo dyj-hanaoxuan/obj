@@ -2,6 +2,7 @@ import React from 'react'
 import {Route} from 'react-router-dom'
 import {inject,observer} from "mobx-react";
 import loadable from '@loadable/component'
+
 @inject('usersLogin')
 @observer
 class Router extends React.Component {
@@ -15,15 +16,18 @@ class Router extends React.Component {
     bindRouter(list){
         let routerList= list.map((item)=>{
             if(item.menuChilds.length===0){
-                return  <Route key={item.menuId} path={item.menuUrl} component={ loadable(() => import(`./${item.componentPath}`))}/>
+                return  <Route key={item.menuId} path={item.menuUrl} component={ loadable(() => import(`./../Pages/${item.componentPath}`))}/>
             }else{
-                return  <Route key={item.menuId} path={item.menuUrl} render={() =>{
-                    let ComponentName =loadable(() => import(`./${item.componentPath}`));
-                    return <ComponentName {...this.props}>
-                        {this.bindRouter(item.menuChilds)}
-                    </ComponentName>
-                }}>
-                </Route>
+
+                // return  <Route key={item.menuId} path={item.menuUrl} render={() =>{
+                //     let ComponentName =loadable(() => import(`./../Pages/${item.componentPath}`));
+                //     return <ComponentName {...this.props}>
+                //         {this.bindRouter(item.menuChilds)}
+                //     </ComponentName>
+                // }}>
+                // </Route>
+
+                return [...this.bindRouter(item.menuChilds)]
             }
         })
         return routerList;
