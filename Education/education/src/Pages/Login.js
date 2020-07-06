@@ -14,10 +14,11 @@ class Login extends React.Component {
         };
         const onFinish = values => {
             console.log('Success:', values);
-            this.props.usersLogin.login().then((res)=>{
-                console.log(res)
-                this.props.history.push('/Index')
-            }).catch((err)=>{
+            this.props.usersLogin.login()
+                .then((data)=>{
+                    this.props.history.push('Index')
+                    console.log(data)
+                }).catch((err)=>{
                 console.log(err)
             })
         };

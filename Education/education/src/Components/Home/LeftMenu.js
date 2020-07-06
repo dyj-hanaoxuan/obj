@@ -27,7 +27,7 @@ class LeftMenu extends React.Component {
     // bindMenu(menuList){
     //     let MenuList = menuList.map((item)=>{
     //         if(item.menuChilds.length===0){
-    //             return <Menu.Item key={item.menuId}><NavLink to={item.menuUrl}>{item.menuName}</NavLink></Menu.Item>
+    //             return <TeachingManagement.Item key={item.menuId}><NavLink to={item.menuUrl}>{item.menuName}</NavLink></TeachingManagement.Item>
     //         } else {
     //             return <SubMenu key={item.menuId} icon={<LaptopOutlined />} title={item.menuName}>
     //                 {this.bindMenu(item.menuChilds)}
@@ -62,7 +62,7 @@ class LeftMenu extends React.Component {
     }
     render() {
         // let Nav = this.state.LeftMenu.map((item)=>{
-        //     return  <Menu.Item theme="dark" key={item.menuId}>
+        //     return  <TeachingManagement.Item theme="dark" key={item.menuId}>
         //         <NavLink to={
         //             {
         //                 pathname:`${item.menuUrl}`,
@@ -71,16 +71,16 @@ class LeftMenu extends React.Component {
         //                     title:`${item.menuName}`
         //                 }
         //             }}>{item.menuName}</NavLink>
-        //     </Menu.Item>
+        //     </TeachingManagement.Item>
         // })
         return (
             <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
+                defaultOpenKeys={['1']}
                 style={{ height: '100%' }}
             >
-                <SubMenu key="sub1" title='教育管理系统'>
+                <SubMenu key="1" title='教育管理系统'>
                     {this.state.leftMenu}
                 </SubMenu>
             </Menu>

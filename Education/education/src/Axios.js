@@ -20,22 +20,21 @@
 //
 // export default Axios;
 // 引入axios
+import React, { Component } from 'react'
 import axios from 'axios'
-import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { message, Spin } from 'antd';
 
-const Axios = axios.create({
-    baseURL: 'api', // 设置请求的base url
-    timeout: 20000, // 设置超时时长
-})
-
+// const request = axios.create({
+//     baseURL: '/api', // 设置请求的base url
+//     timeout: 20000, // 设置超时时长
+// })
+axios.defaults.baseURL='api'
 // 设置post请求头
-Axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 当前正在请求的数量
 let requestCount = 0
-
 // 显示loading
 function showLoading () {
     if (requestCount === 0) {
@@ -56,7 +55,11 @@ function hideLoading () {
 }
 
 // 请求前拦截
-Axios.interceptors.request.use(config => {
+axios.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if (token){
+        token && (config.headers.Authorization = token)
+    }
     // requestCount为0，才创建loading, 避免重复创建
     if (config.headers.isLoading !== false) {
         showLoading()
@@ -71,7 +74,7 @@ Axios.interceptors.request.use(config => {
 })
 
 // 返回后拦截
-Axios.interceptors.response.use(res => {
+axios.interceptors.response.use(res => {
     // 判断当前请求是否设置了不显示Loading
     if (res.config.headers.isLoading !== false) {
         hideLoading()
@@ -91,7 +94,7 @@ Axios.interceptors.response.use(res => {
 })
 
 // 把组件引入，并定义成原型属性方便使用
-Component.prototype.$axios = Axios
+// Component.prototype.$axios = request
 
-export default Axios
+export default axios
 
