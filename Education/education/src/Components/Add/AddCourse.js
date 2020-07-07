@@ -6,13 +6,13 @@ const layout = {
     span: 4,
   },
   wrapperCol: {
-    span: 10,
+    span: 6,
   },
 };
 const tailLayout = {
   wrapperCol: {
     offset: 4,
-    span: 10,
+    span: 6,
   },
 };
 // 新增课程
@@ -33,7 +33,7 @@ export default class AddCourse extends Component {
                         <div>
                             <div>新增课程</div>
                             <Form {...layout} ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
-                                <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+                                <Form.Item name="gender" label="所属科目" rules={[{ required: true }]}>
                                     <Select
                                         placeholder="Select a option and change input text above"
                                         onChange={this.onGenderChange}

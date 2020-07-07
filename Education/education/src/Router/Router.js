@@ -2,6 +2,8 @@ import React from 'react'
 import {Route} from 'react-router-dom'
 import {inject,observer} from "mobx-react";
 import loadable from '@loadable/component'
+import AddCourse from '../Components/Add/AddCourse';
+
 
 @inject('usersLogin')
 @observer
@@ -44,6 +46,7 @@ class Router extends React.Component {
         return (
             <div>
                 {this.state.routerList}
+                <Route path='/Index/AddCourse'><AddCourse/></Route>
             </div>
         )
     }
