@@ -1,11 +1,11 @@
 import React from 'react'
-
+// 必修课时管理组件
 class RequiredCourseTime extends React.Component {
     render() {
         return (
             <div>
-                RequiredCourseTime
-                必修课时管理
+            必修课时管理组件
+                
             </div>
         )
     }

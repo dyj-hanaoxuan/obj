@@ -3,6 +3,7 @@ import { Layout, Breadcrumb } from 'antd';
 import LeftMenu from '../Components/Home/LeftMenu'
 import head from '../Common/images/head.png'
 import Router from '../Router/Router'
+import AddCourse from '../Components/Add/AddCourse';
 const { Header, Content, Sider } = Layout;
 class Index extends React.Component {
     render() {
@@ -32,6 +33,7 @@ class Index extends React.Component {
                             </Sider>
                             <Content style={{ padding: '0 24px', minHeight: 280 }}>
                                 <Router/>
+                                <AddCourse/>
                             </Content>
                         </Layout>
                     </Content>

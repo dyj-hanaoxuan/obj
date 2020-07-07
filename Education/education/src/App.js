@@ -9,6 +9,7 @@ import {
     Switch
 } from 'react-router-dom'
 import navRouter from "./Router/Router";
+import AddCourse from './Components/Add/AddCourse';
 function App() {
   return (
       <Router>
@@ -20,6 +21,7 @@ function App() {
                       <Route path="/Index" render={()=>
                           <Index>
                               <navRouter/>
+                              <AddCourse/>
                           </Index>
                       }/>
                   </Switch>
