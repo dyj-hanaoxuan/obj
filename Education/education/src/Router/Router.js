@@ -27,7 +27,7 @@ class Router extends React.Component {
                 // }}>
                 // </Route>
 
-                return [...this.bindRouter(item.menuChilds)]
+                return [...this.bindRouter(item.menuChilds),<Route key={item.menuId} path={item.menuUrl} component={ loadable(() => import(`./${item.componentPath}`))}/>]
             }
         })
         return routerList;

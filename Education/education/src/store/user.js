@@ -3,9 +3,19 @@ import React, {Component} from "react";
 import api from '../Api/index'
 import axios from '../Axios'
 class user extends Component{
-    @observable user = localStorage.getItem('user')?JSON.parse():[];
+    @observable user = sessionStorage.getItem('user')?
+        JSON.parse(sessionStorage.getItem('user')):'';
     @observable isLogin = false;
-    @observable token = localStorage.getItem('token')?JSON.parse():[];
+    @observable token = sessionStorage.getItem('token')?
+        JSON.parse(sessionStorage.getItem('token')):'';
+    @action
+    SetUser=()=>{
+        sessionStorage.setItem('user',JSON.stringify(this.user));
+    }
+    @action
+    SetToken=()=>{
+        sessionStorage.setItem('token',JSON.stringify(this.token));
+    }
     @action
     login=()=>{
         // return new Promise((resolve,reject)=>{
@@ -49,5 +59,7 @@ class user extends Component{
             console.log(data)
         })
     }
+
+
 }
 export default user

@@ -2,7 +2,7 @@ import React from 'react'
 import {Menu} from "antd";
 import { inject,observer} from "mobx-react";
 import {NavLink} from 'react-router-dom'
-// import * as antIcons from '@ant-design/icons';
+import * as antIcons from '@ant-design/icons';
 const { SubMenu } = Menu;
 @inject('usersLogin')
 @observer
@@ -37,29 +37,37 @@ class LeftMenu extends React.Component {
     //     return MenuList
     //
     // }
-
+    componentWillMount() {
+        // this.props.usersLogin.user
+        // this.props.usersLogin.token
+        let menuList = this.bingMenu(this.props.usersLogin.user.menuInfo)
+        this.setState({
+            leftMenu:menuList
+        })
+    }
+    componentDidMount() {
+        window.addEventListener('beforeunload',()=>{
+            this.props.usersLogin.SetUser()
+            this.props.usersLogin.SetUser()
+        })
+    }
     bingMenu(menuList){
         let MenuList = menuList.map((item)=>{
             if(item.menuChilds.length===0){  //没有子菜单
-                // let IconMenu =antIcons[item.menuImgClass]
-                return <Menu.Item key={item.menuId}>
+                let IconMenu =antIcons[item.menuImgClass]
+                return <Menu.Item key={item.menuId}  icon={  <IconMenu />}>
                     <NavLink to={item.menuUrl}>{item.menuName}</NavLink>
                 </Menu.Item>
             }else {
-                // let IconMenu =antIcons[item.menuImgClass];
-                return <SubMenu key={item.menuId} title={item.menuName}>
+                let IconMenu =antIcons[item.menuImgClass];
+                return <SubMenu key={item.menuId} title={item.menuName}  icon={  <IconMenu />}>
                     {this.bingMenu(item.menuChilds)}
                 </SubMenu>
             }
         })
         return MenuList
     }
-    componentDidMount() {
-        let menuList = this.bingMenu(this.props.usersLogin.user.menuInfo)
-        this.setState({
-            leftMenu:menuList
-        })
-    }
+
     render() {
         // let Nav = this.state.LeftMenu.map((item)=>{
         //     return  <TeachingManagement.Item theme="dark" key={item.menuId}>
@@ -80,9 +88,7 @@ class LeftMenu extends React.Component {
                 defaultOpenKeys={['1']}
                 style={{ height: '100%' }}
             >
-                <SubMenu key="1" title='教育管理系统'>
-                    {this.state.leftMenu}
-                </SubMenu>
+                {this.state.leftMenu}
             </Menu>
         )
     }
