@@ -1,28 +1,28 @@
 import React, { Component } from 'react'
-import { Row, Col,Form, Select,Radio,Input,Upload, message,Button } from 'antd';
-import { LoadingOutlined, PlusOutlined,UploadOutlined } from '@ant-design/icons';
+import { Row, Col,Form, Select,Radio,Input,Button } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import '../../Common/css/AddCourse.css'
 const { Option } = Select;
-//新增必修课程组件
-// 上传图片
-function getBase64(img, callback) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result));
-    reader.readAsDataURL(img);
+//新增必修课时组件
+
+  // 下拉框
+  function onChange(value) {
+    console.log(`selected ${value}`);
   }
-  function beforeUpload(file) {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-      message.error('You can only upload JPG/PNG file!');
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error('Image must smaller than 2MB!');
-    }
-    return isJpgOrPng && isLt2M;
+  
+  function onBlur() {
+    console.log('blur');
   }
-// 新增必修课程
-class AddCourse extends Component {
+  
+  function onFocus() {
+    console.log('focus');
+  }
+  
+  function onSearch(val) {
+    console.log('search:', val);
+  }
+// 新增选修课程
+class AddRequiredCourseTime extends Component {
     onFinish = values => {
         console.log(values);
       };
@@ -35,22 +35,6 @@ class AddCourse extends Component {
       state = {
     loading: false,
   };
-    //   文件上传
-    handleChange = info => {
-        if (info.file.status === 'uploading') {
-        this.setState({ loading: true });
-        return;
-        }
-        if (info.file.status === 'done') {
-        // Get this url from response in real world.
-        getBase64(info.file.originFileObj, imageUrl =>
-            this.setState({
-            imageUrl,
-            loading: false,
-            }),
-        );
-        }
-    };
     render() {
         const uploadButton = (
             <div>
@@ -64,7 +48,7 @@ class AddCourse extends Component {
                 <Row justify="center">
                     <Col span={24}>
                         <div>
-                            <div className='addCourseDiv'>新增必修课程</div>
+                            <div className='addCourseDiv'>新增选修课程</div>
                             <Form labelAlign="right"
                             labelCol={{
                             span: 3,
@@ -76,13 +60,21 @@ class AddCourse extends Component {
                             }} ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
                                 <Form.Item name="gender" label="所属科目">
                                     <Select
-                                        placeholder="Select a option and change input text above"
-                                        onChange={this.onGenderChange}
-                                        allowClear
+                                        showSearch
+                                        style={{ width: 200 }}
+                                        placeholder="Select a person"
+                                        optionFilterProp="children"
+                                        onChange={onChange}
+                                        onFocus={onFocus}
+                                        onBlur={onBlur}
+                                        onSearch={onSearch}
+                                        filterOption={(input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        }
                                     >
-                                        <Option value="male">male</Option>
-                                        <Option value="female">female</Option>
-                                        <Option value="other">other</Option>
+                                        <Option value="jack">Jack</Option>
+                                        <Option value="lucy">Lucy</Option>
+                                        <Option value="tom">Tom</Option>
                                     </Select>
                                 </Form.Item>
                                 <Form.Item
@@ -98,26 +90,7 @@ class AddCourse extends Component {
                                     <Radio value="c">高级</Radio>
                                     </Radio.Group>
                                 </Form.Item>
-                                <Form.Item name={['user', 'upload']} label="课程封面">
-                                    <Upload
-                                    name="avatar"
-                                    listType="picture-card"
-                                    className="avatar-uploader"
-                                    showUploadList={false}
-                                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                    beforeUpload={beforeUpload}
-                                    onChange={this.handleChange}
-                                >
-                                    {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                                </Upload>
-                              </Form.Item>
-                              <Form.Item name={['user', 'uploadVideo']} label="课程视频">
-                                <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" directory>
-                                    <Button>
-                                        <UploadOutlined /> 上传文件夹
-                                    </Button>
-                                </Upload>
-                              </Form.Item>
+                            
                               <Form.Item name={['user', 'introduction']} label="课程简介">
                                     <Input.TextArea rows='4'/>
                               </Form.Item>
@@ -140,4 +113,4 @@ class AddCourse extends Component {
         )
     }
 }
-export default AddCourse
+export default AddRequiredCourseTime

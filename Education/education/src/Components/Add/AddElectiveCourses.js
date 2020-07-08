@@ -21,8 +21,24 @@ function getBase64(img, callback) {
     }
     return isJpgOrPng && isLt2M;
   }
-// 新增必修课程
-class AddCourse extends Component {
+  // 下拉框
+  function onChange(value) {
+    console.log(`selected ${value}`);
+  }
+  
+  function onBlur() {
+    console.log('blur');
+  }
+  
+  function onFocus() {
+    console.log('focus');
+  }
+  
+  function onSearch(val) {
+    console.log('search:', val);
+  }
+// 新增选修课程
+class AddElectiveCourses extends Component {
     onFinish = values => {
         console.log(values);
       };
@@ -64,7 +80,7 @@ class AddCourse extends Component {
                 <Row justify="center">
                     <Col span={24}>
                         <div>
-                            <div className='addCourseDiv'>新增必修课程</div>
+                            <div className='addCourseDiv'>新增选修课程</div>
                             <Form labelAlign="right"
                             labelCol={{
                             span: 3,
@@ -76,13 +92,21 @@ class AddCourse extends Component {
                             }} ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
                                 <Form.Item name="gender" label="所属科目">
                                     <Select
-                                        placeholder="Select a option and change input text above"
-                                        onChange={this.onGenderChange}
-                                        allowClear
+                                        showSearch
+                                        style={{ width: 200 }}
+                                        placeholder="Select a person"
+                                        optionFilterProp="children"
+                                        onChange={onChange}
+                                        onFocus={onFocus}
+                                        onBlur={onBlur}
+                                        onSearch={onSearch}
+                                        filterOption={(input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                        }
                                     >
-                                        <Option value="male">male</Option>
-                                        <Option value="female">female</Option>
-                                        <Option value="other">other</Option>
+                                        <Option value="jack">Jack</Option>
+                                        <Option value="lucy">Lucy</Option>
+                                        <Option value="tom">Tom</Option>
                                     </Select>
                                 </Form.Item>
                                 <Form.Item
@@ -140,4 +164,4 @@ class AddCourse extends Component {
         )
     }
 }
-export default AddCourse
+export default AddElectiveCourses

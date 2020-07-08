@@ -6,7 +6,7 @@ const { confirm } = Modal;
  
   
 
-class RequiredCourseTime extends React.Component {
+class ClassModel extends React.Component {
    
    
      constructor(props){
@@ -78,7 +78,17 @@ class RequiredCourseTime extends React.Component {
               console.log(111);
               console.log("1",index);  
               console.log("2",record);  
-              console.log("3",text);  
+              console.log("3",text); 
+              Axios.post(`api`+Api.user.userLogin,{username:'abc',userPwd:'123'})
+              .then((res)=>{
+                  console.log("axios的打印")
+                  console.log(res)
+                  if(res.data.Code===200){
+                      resolve("删除成功")
+                  }else {
+                      reject("删除失败")
+                  }
+              })
               
             }).catch(() => console.log('Oops errors!'));
           },
@@ -238,4 +248,4 @@ class RequiredCourseTime extends React.Component {
     }
 }
 
-export {RequiredCourseTime as default}
+export {ClassModel as default}
