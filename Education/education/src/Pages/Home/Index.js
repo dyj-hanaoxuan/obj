@@ -1,13 +1,13 @@
 import React from 'react'
 
-class InfManage extends React.Component {
+class Index extends React.Component {
     render() {
         return (
             <div>
-                InfManage
+                首页
             </div>
         )
     }
 }
 
-export {InfManage as default}
+export {Index as default}

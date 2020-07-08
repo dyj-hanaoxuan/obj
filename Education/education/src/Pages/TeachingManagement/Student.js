@@ -1,13 +1,13 @@
 import React from 'react'
 
-class InfManage extends React.Component {
+class Student extends React.Component {
     render() {
         return (
             <div>
-                InfManage
+                Student
             </div>
         )
     }
 }
 
-export {InfManage as default}
+export {Student as default}

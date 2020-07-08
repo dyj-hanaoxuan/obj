@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import {Row, Col, Select, Form, Input, Button,  Table, Tag, Space, Modal, Switch  } from 'antd'
 import { SearchOutlined, ExclamationCircleOutlined, CloseOutlined, CheckOutlined   } from '@ant-design/icons';
 const { Option } = Select
@@ -243,6 +244,13 @@ class ClassModel extends React.Component {
                 {/* 表单内容--start */}
                 <Table columns={columns} dataSource={this.state.data} />        
                 {/* 表单内容--end */}
+=======
+
+class ClassModel extends React.Component {
+    render() {
+        return (
+            <div>
+>>>>>>> f8172933e8437e13a4f15ff7109de73b8dad60ef
             </div>
         )
     }
