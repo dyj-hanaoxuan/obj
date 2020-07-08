@@ -1,13 +1,13 @@
 import React from 'react'
 
-class InfManage extends React.Component {
+class Account extends React.Component {
     render() {
         return (
             <div>
-                InfManage
+                Account
             </div>
         )
     }
 }
 
-export {InfManage as default}
+export {Account as default}

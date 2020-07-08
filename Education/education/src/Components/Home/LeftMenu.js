@@ -13,33 +13,7 @@ class LeftMenu extends React.Component {
             leftMenu:[],
         }
     }
-    //生成左边菜单
-    // bindMenu=()=>{
-    //     Axios.post(api.Nav.Navbar)
-    //         .then(res => {
-    //         console.log(res)
-    //         this.setState({
-    //             LeftMenu: res.data.data.menuInfo
-    //         });
-    //     })
-    // }
-
-    // bindMenu(menuList){
-    //     let MenuList = menuList.map((item)=>{
-    //         if(item.menuChilds.length===0){
-    //             return <TeachingManagement.Item key={item.menuId}><NavLink to={item.menuUrl}>{item.menuName}</NavLink></TeachingManagement.Item>
-    //         } else {
-    //             return <SubMenu key={item.menuId} icon={<LaptopOutlined />} title={item.menuName}>
-    //                 {this.bindMenu(item.menuChilds)}
-    //             </SubMenu>
-    //         }
-    //     })
-    //     return MenuList
-    //
-    // }
     componentWillMount() {
-        // this.props.usersLogin.user
-        // this.props.usersLogin.token
         let menuList = this.bingMenu(this.props.usersLogin.user.menuInfo)
         this.setState({
             leftMenu:menuList
@@ -69,18 +43,6 @@ class LeftMenu extends React.Component {
     }
 
     render() {
-        // let Nav = this.state.LeftMenu.map((item)=>{
-        //     return  <TeachingManagement.Item theme="dark" key={item.menuId}>
-        //         <NavLink to={
-        //             {
-        //                 pathname:`${item.menuUrl}`,
-        //                 query:{id:item.menuUrl},
-        //                 state:{
-        //                     title:`${item.menuName}`
-        //                 }
-        //             }}>{item.menuName}</NavLink>
-        //     </TeachingManagement.Item>
-        // })
         return (
             <Menu
                 mode="inline"

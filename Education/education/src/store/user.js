@@ -18,24 +18,7 @@ class user extends Component{
     }
     @action
     login=()=>{
-        // return new Promise((resolve,reject)=>{
-        //     axios.post('api'+Api.Nav.Navbar,
-        //         {userName:'xxx',userPwd:123}
-        //     )
-        //         .then((res)=>{
-        //             if (res.data.Code===200){
-        //                 console.log(res)
-        //                 this.TeachingManagement = res.data.data;
-        //                 this.token = res.data.token
-        //                 resolve('登录成功')
-        //             }else {
-        //                 reject('登录失败')
-        //             }
-        //         })
-        //
-        // }).then((data)=>{
-        //     console.log(data)
-        // })
+
         return new Promise((resolve,reject)=> {
             axios({
                 method: 'post',

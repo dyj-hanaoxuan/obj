@@ -1,6 +1,7 @@
 import React from 'react';
 import Index from './Pages/Index'
 import Login from './Pages/Login'
+import Pwd from './Pages/Permissions/Password'
 import {
     BrowserRouter as Router,
     Route,
@@ -9,7 +10,6 @@ import {
     Switch
 } from 'react-router-dom'
 import navRouter from "./Router/Router";
-// import AddCourse from './Components/Add/AddCourse';
 function App() {
   return (
       <Router>
@@ -26,6 +26,7 @@ function App() {
                   </Switch>
               </HashRouter>
           </div>
+          {/*<Pwd/>*/}
       </Router>
   );
 }
