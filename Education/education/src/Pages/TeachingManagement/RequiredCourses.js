@@ -98,7 +98,7 @@ class RequiredCourses extends React.Component {
         //     console.log(err)
         // })
         // fetch请求（第一个then是返回的格式是什么格式；第二个then才是说具体的json是什么数据;catch是出现的错误）
-        fetch(`apc/classes/selectAllClassesType`,{
+        fetch(`api/classes/selectAllClassesType`,{
             // 请求的方式
             method:"POST",
             // 请求头

@@ -1,13 +1,12 @@
 import React from 'react'
 
-class InfManage extends React.Component {
+class ClassModel extends React.Component {
     render() {
         return (
             <div>
-                InfManage
             </div>
         )
     }
 }
 
-export {InfManage as default}
+export {ClassModel as default}
